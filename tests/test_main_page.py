@@ -1,4 +1,5 @@
 import allure
+from data import Constants
 
 from pages.main_page import MainPage
 class TestMainPage:
@@ -6,7 +7,7 @@ class TestMainPage:
     def test_go_to_constructor_page(self, driver):
        main_page = MainPage(driver)
        main_page.click_on_constructor_button()
-       assert driver.current_url == 'https://stellarburgers.nomoreparties.site/'
+       assert driver.current_url == Constants.URL
 
     @allure.title('Проверка перехода в ленту заказов')
     def test_go_to_feed_orders_page(self, driver):

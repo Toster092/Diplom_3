@@ -16,10 +16,7 @@
 
 **Установка зависимостей**
 
-> `$ pip install pytest`
-> `$ pip install requests'
-> 'pip install Faker'
-> 'pip install selenium'  
+> `$ pip install -r requirements.txt`
 
 **Запуск автотестов и создание allure отчета**
 

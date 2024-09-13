@@ -7,22 +7,29 @@ class BasePage:
 
     def __init__(self, driver):
        self.driver = driver
+
     def go_to_site(self, URL):
        return self.driver.get(URL)
+
     def find_element_located(self, locator, time=15):
        return WebDriverWait(self.driver, time).until(expected_conditions.element_to_be_clickable(locator))
+
     def find_elements_located(self, locator, time=15):
        return WebDriverWait(self.driver, time).until(expected_conditions.visibility_of_all_elements_located(locator))
+
     def scroll_to_element_located(self, locator):
        element = self.find_element_located(locator)
        self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
+
     def click_on_element(self, locator):
        return self.find_element_located(locator).click()
 
     def get_text(self, locator):
        return self.find_element_located(locator).text
+
     def get_element_attribute(self, locator):
        return self.find_element_located(locator).get_attribute('class')
+
     def input_text(self, locator, text):
        element = self.find_element_located(locator)
        element.send_keys(text)
@@ -74,14 +81,12 @@ class BasePage:
         if element:
             self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
             self.driver.execute_script("arguments[0].click();", element)
-        else:
-            return None
 
     def wait_element_to_be_clickable(self, locator: tuple[str, str], timeout: int = 10):
         try:
             return WebDriverWait(self.driver, timeout).until(expected_conditions.element_to_be_clickable(locator))
         except TimeoutException:
-            return None
+            pass
 
     def wait_for_element_to_disappear(self, locator: tuple[str, str], timeout: int = 10):
         return WebDriverWait(self.driver, timeout).until_not(expected_conditions.presence_of_element_located(locator))

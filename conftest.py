@@ -29,7 +29,7 @@ def user_data():
         'password': faker.password(),
         'name': faker.name()
     }
-    response = requests.post('https://stellarburgers.nomoreparties.site/api/auth/register', json=payload)
+    response = requests.post(f'{Constants.URL}api/auth/register', json=payload)
     payload['token'] = response.json()['accessToken'].replace('Bearer ', '')
     return payload
 
@@ -39,4 +39,4 @@ def delete_user(user_data):
     headers = {
         'Authorization': user_data['token']
     }
-    requests.delete('https://stellarburgers.nomoreparties.site/api/auth/user', headers=headers)
+    requests.delete(f'{Constants.URL}/api/auth/user', headers=headers)
